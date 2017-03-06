@@ -87,3 +87,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+03_data_transformation_and_integration/Linq2dbDemo/bin
+03_data_transformation_and_integration/Linq2dbDemo/obj
+03_data_transformation_and_integration/Linq2dbDemo/packages
