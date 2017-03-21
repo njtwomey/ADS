@@ -90,3 +90,4 @@ ENV/
 03_data_transformation_and_integration/Linq2dbDemo/bin
 03_data_transformation_and_integration/Linq2dbDemo/obj
 03_data_transformation_and_integration/Linq2dbDemo/packages
+04_data_exploration_and_visualisation/02_d3_demo/kaggle_data
