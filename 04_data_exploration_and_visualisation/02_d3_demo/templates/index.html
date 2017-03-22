@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('.bower.static', filename='keen-dashboards/dist/keen-dashboards.css') }}">
     <link rel="stylesheet" href="{{ url_for('.bower.static', filename='dcjs/dc.css') }}">
     <link rel="stylesheet" href="{{ url_for('.bower.static', filename='leaflet/dist/leaflet.css') }}">
+    {{ css_resources|indent(4)|safe }}
 </head>
 <body class="application">
 
@@ -31,25 +32,25 @@
                   <a href="https://www.highcharts.com/">HighCharts</a>
               </div>
               <div class="chart-stage">
-                <div id="time-chart"></div>
+                <div id="high-charts"></div>
               </div>
             </div>
           </div>
           <!-- Time Chart -->
 
-{#          <!-- Time Chart -->#}
-{#          <div class="col-sm-12">#}
-{#            <div class="chart-wrapper">#}
-{#              <div class="chart-title">#}
-{#                Number of Events#}
-{#              </div>#}
-{#              <div class="chart-stage">#}
-{#                <div id="time-chart"></div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#          <!-- Time Chart -->#}
-{##}
+          <!-- Time Chart -->
+          <div class="col-sm-12">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                <a href="http://bokeh.pydata.org/">Bokeh</a>
+              </div>
+              <div class="chart-stage">
+                {{ plot_div|indent(4)|safe }}
+              </div>
+            </div>
+          </div>
+          <!-- Time Chart -->
+
 {#          <!-- Brand -->#}
 {#          <div class="col-sm-6">#}
 {#            <div class="chart-wrapper">#}
@@ -173,6 +174,9 @@
     <script src="{{ url_for('.bower.static', filename='d3-queue/d3-queue.js') }}"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    {{ js_resources|indent(4)|safe }}
+    {{ plot_script|indent(4)|safe }}
+
     <script type="text/javascript">
 
         $.getJSON('/data', function(data) {
@@ -194,7 +198,7 @@
                 xAxis: {categories: kk, title: {text: null}},
                 yAxis: [{}],
                 title: {text: null},
-                chart: {type: 'bar', renderTo: 'time-chart'}
+                chart: {type: 'bar', renderTo: 'high-charts'}
             });
 
 {#            debugger;#}

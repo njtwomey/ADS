@@ -1,0 +1,94 @@
+package:
+  name: bokeh
+  version: 'nightly'
+
+build:
+  number: {{ environ.get('BINSTAR_BUILD', 1) }}
+  noarch_python: True
+  entry_points:
+    - bokeh = bokeh.__main__:main
+
+extra:
+  channels:
+    - bokeh
+    - conda-forge
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - nodejs >=4.1
+    - six
+    - packaging
+    - python-dateutil
+    - numpy
+    - yaml
+    - pyyaml
+    - jinja2
+    - tornado >=4.3
+
+  run:
+    # bokeh
+    - python
+    - six
+    - requests
+    - pyyaml
+    - python-dateutil
+    - jinja2
+    - numpy
+
+    # server
+    - tornado >=4.3
+    # meta-package installs futures for py 2.7 but not for py 3.x
+    - futures-compat
+
+test:
+  requires:
+    # docs
+    - pygments
+    - sphinx >=1.3.1
+
+    # tests
+    # pyyaml installed by bokeh
+    # jinja2 installed by bokeh
+    - colorama
+    - coverage
+    - flake8
+    - mock
+    - packaging
+    - pandas
+    - pytest >=3.0.2
+    - pytest-cov >=1.8.1     [unix]
+    - pytest-selenium==1.6.0 [unix]
+    - selenium==2.53.5
+    - pytest-xdist
+    - pytest-rerunfailures
+    - beautiful-soup         [unix]
+    - scipy
+    - pillow
+    - boto
+    - pdiff                  [unix]
+    - nodejs >=4.1
+
+    # examples
+    - jupyter
+    - matplotlib
+    - sympy
+    - scikit-learn
+    - ggplot <=0.9.4
+    - seaborn
+    - networkx
+    - icalendar          [unix]
+    - flask
+    - flexx
+
+
+  commands:
+    - bokeh -h
+
+  imports:
+    - bokeh
+
+about:
+  home: https://github.com/bokeh/bokeh
+  license: New BSD

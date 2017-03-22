@@ -24,6 +24,12 @@ from flask import render_template
 from flask_bower import Bower
 import pandas as pd
 
+from bokeh.plotting import figure
+from bokeh.embed import components
+from bokeh.resources import INLINE
+from bokeh.util.string import encode_utf8
+
+
 app = Flask(__name__)
 Bower(app)
 
@@ -31,6 +37,11 @@ app.config.update(
     DEBUG=True,
     TEMPLATES_AUTO_RELOAD=True
 )
+
+# Load the data into pandas
+df = pd.read_csv("mn-budget-detail-2014.csv")
+df = df.sort_values('amount', ascending=False)
+sizes = df.groupby('category').size()
 
 
 # Turn off cache
@@ -42,13 +53,26 @@ def apply_caching(response):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    fig = figure()
+    fig.vbar(sizes, legend=False)
+    js_resources = INLINE.render_js()
+    css_resources = INLINE.render_css()
+    script, div = components(fig)
+    html = render_template(
+        'index.html',
+        plot_script=script,
+        plot_div=div,
+        js_resources=js_resources,
+        css_resources=css_resources,
+        # color=color,
+        # _from=_from,
+        # to=to
+    )
+    return encode_utf8(html)
 
 
 @app.route("/data")
 def get_data():
-    df = pd.read_csv("mn-budget-detail-2014.csv")
-    df = df.sort_values('amount', ascending=False)
     return df.to_json(orient='records')
 
 if __name__ == "__main__":
