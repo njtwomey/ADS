@@ -12,7 +12,7 @@
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="./">Kaggle TalkingData Interactive Visualization</a>
+        <a class="navbar-brand" href="./">MSc Applied Data Science Visualisation Demo</a>
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
           <div class="col-sm-12">
             <div class="chart-wrapper">
               <div class="chart-title">
-                Number of Events
+                  <a href="https://www.highcharts.com/">HighCharts</a>
               </div>
               <div class="chart-stage">
                 <div id="time-chart"></div>
@@ -171,27 +171,53 @@
     <script src="{{ url_for('.bower.static', filename='leaflet/dist/leaflet.js') }}"></script>
     <script src="{{ url_for('.bower.static', filename='keen-js/dist/keen.js') }}"></script>
     <script src="{{ url_for('.bower.static', filename='d3-queue/d3-queue.js') }}"></script>
-    <script src="{{ url_for('.static', filename='js/graphs.js') }}"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
     <script type="text/javascript">
-        new Highcharts.Chart(
-            {"series":[
-                {"data":[
-                    [1462838400000,2158372.6420299998],
-                    [1462752000000,1438419.8610100001],
-                    [1462665600000,667993.263726],
-                    [1462579200000,1825474.7086099999],
-                    [1462492800000,1908047.6404200001],
-                    [1304985600000,228989.8988]],
-                "name": "Value",
-                "yAxis": 0}
-                ],
-                "yAxis":[{}],
-                "chart":
-                    {
-                        "renderTo":"time-chart"},
-                "xAxis":{"type":"datetime","title":{"text":"Date"}},"legend":{"enabled":true}});
+
+        $.getJSON('/data', function(data) {
+            var cs = crossfilter(data);
+            var category = cs.dimension(function (d) {
+                return d.category;
+            });
+            var categoryCounts = category.group().reduceCount().all();
+
+            var kk = _.map(categoryCounts, function (x) {
+                return x.key
+            });
+            var vv = _.map(categoryCounts, function (x) {
+                return x.value
+            });
+
+            new Highcharts.Chart({
+                series: [{data: vv, yAxis: 0}],
+                xAxis: {categories: kk, title: {text: null}},
+                yAxis: [{}],
+                title: {text: null},
+                chart: {type: 'bar', renderTo: 'time-chart'}
+            });
+
+{#            debugger;#}
+        });
+{#            $.each(data, function(index, element) {#}
+{#                console.log(index + ": {" + element.category + ", " +#}
+{#                    element.amount + ", " + element.detail + "}"); }) });#}
+
+{#        new Highcharts.Chart(#}
+{#            {"series":[#}
+{#                {"data":[#}
+{#                    [1462838400000,2158372.6420299998],#}
+{#                    [1462752000000,1438419.8610100001],#}
+{#                    [1462665600000,667993.263726],#}
+{#                    [1462579200000,1825474.7086099999],#}
+{#                    [1462492800000,1908047.6404200001],#}
+{#                    [1304985600000,228989.8988]],#}
+{#                "name": "Value",#}
+{#                "yAxis": 0}#}
+{#                ],#}
+{#                "yAxis":[{}],#}
+{#                "chart": { "renderTo":" time-chart" },#}
+{#                "xAxis": {"type":"datetime","title":{"text":"Date"}},"legend":{"enabled":true}});#}
     </script>
 
 

@@ -27,6 +27,18 @@ import pandas as pd
 app = Flask(__name__)
 Bower(app)
 
+app.config.update(
+    DEBUG=True,
+    TEMPLATES_AUTO_RELOAD=True
+)
+
+
+# Turn off cache
+@app.after_request
+def apply_caching(response):
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    return response
+
 
 @app.route("/")
 def index():
