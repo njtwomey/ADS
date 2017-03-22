@@ -1,0 +1,25 @@
+{
+  "name": "02_d3_demo",
+  "homepage": "https://github.com/njtwomey/ADS",
+  "authors": [
+    "Tom Diethe <tdiethe@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "dcjs": "^2.1.4",
+    "underscore": "^1.8.3",
+    "keen-dashboards": "^0.1.1",
+    "leaflet": "^1.0.3"
+  }
+}

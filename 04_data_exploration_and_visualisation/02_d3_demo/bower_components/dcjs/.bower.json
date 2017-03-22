@@ -1,0 +1,39 @@
+{
+  "name": "dcjs",
+  "main": [
+    "dc.js",
+    "dc.css"
+  ],
+  "keywords": [
+    "visualization",
+    "svg",
+    "animation",
+    "canvas",
+    "chart",
+    "dimensional",
+    "crossfilter",
+    "d3"
+  ],
+  "ignore": [
+    "*",
+    "!dc.*",
+    "!LICENSE",
+    "!README.md"
+  ],
+  "dependencies": {
+    "d3": "3.x",
+    "crossfilter2": "~1.3"
+  },
+  "homepage": "https://github.com/NickQiZhu/dc.js",
+  "version": "2.1.4",
+  "_release": "2.1.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.1.4",
+    "commit": "4c6f78dee0c0b281c23c3d88853be300ee212d81"
+  },
+  "_source": "https://github.com/NickQiZhu/dc.js.git",
+  "_target": "^2.1.4",
+  "_originalSource": "dcjs",
+  "_direct": true
+}

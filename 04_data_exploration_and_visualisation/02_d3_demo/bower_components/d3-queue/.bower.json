@@ -1,0 +1,19 @@
+{
+  "name": "d3-queue",
+  "description": "Evaluate asynchronous tasks with configurable concurrency.",
+  "main": "d3-queue.js",
+  "license": "BSD-3-Clause",
+  "ignore": [],
+  "homepage": "https://github.com/d3/d3-queue-bower",
+  "version": "3.0.5",
+  "_release": "3.0.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.0.5",
+    "commit": "44baa08d391c370bf48685a9eef6ed48abf881b5"
+  },
+  "_source": "https://github.com/d3/d3-queue-bower.git",
+  "_target": "^3.0.5",
+  "_originalSource": "d3-queue",
+  "_direct": true
+}

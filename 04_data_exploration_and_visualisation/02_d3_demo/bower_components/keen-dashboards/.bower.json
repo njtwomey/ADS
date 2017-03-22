@@ -1,0 +1,31 @@
+{
+  "name": "keen-dashboards",
+  "homepage": "https://keenlabs.github.io/dashboards/",
+  "main": "./dist/keen-dashboards.css",
+  "authors": [
+    "Dustin Larimer <dustin@keen.io>",
+    "Sean Dokko <dokko1230@gmail.com>",
+    "Ritchie Benevedes <ritchieleeann@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*"
+  ],
+  "keywords": [
+    "keen io",
+    "dashboards",
+    "dataviz",
+    "visualization"
+  ],
+  "version": "0.1.1",
+  "_release": "0.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.1",
+    "commit": "47184121dcf8beb8a59e249453e48fa856262c7d"
+  },
+  "_source": "https://github.com/keen/dashboards.git",
+  "_target": "^0.1.1",
+  "_originalSource": "keen-dashboards",
+  "_direct": true
+}
