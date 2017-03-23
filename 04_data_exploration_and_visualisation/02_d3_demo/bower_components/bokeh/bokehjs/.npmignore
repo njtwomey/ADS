@@ -1,8 +1,0 @@
-/node_modules
-*~
-*.sw[opn]
-*.bak
-*#*
-*.#*
-*.DS_Store
-npm-debug.log

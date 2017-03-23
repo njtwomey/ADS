@@ -24,10 +24,10 @@ from flask import render_template
 from flask_bower import Bower
 import pandas as pd
 
-from bokeh.plotting import figure
 from bokeh.embed import components
 from bokeh.resources import INLINE
 from bokeh.util.string import encode_utf8
+from bokeh.charts import Bar
 
 
 app = Flask(__name__)
@@ -53,20 +53,16 @@ def apply_caching(response):
 
 @app.route("/")
 def index():
-    fig = figure()
-    fig.vbar(sizes, legend=False)
+    bar = Bar(df, 'category', filename="bar.html", title="MN Capital Budget - 2014", legend=False)
     js_resources = INLINE.render_js()
     css_resources = INLINE.render_css()
-    script, div = components(fig)
+    script, div = components(bar)
     html = render_template(
         'index.html',
         plot_script=script,
         plot_div=div,
         js_resources=js_resources,
-        css_resources=css_resources,
-        # color=color,
-        # _from=_from,
-        # to=to
+        css_resources=css_resources
     )
     return encode_utf8(html)
 
