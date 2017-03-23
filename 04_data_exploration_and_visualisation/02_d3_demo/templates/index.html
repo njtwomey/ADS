@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('.bower.static', filename='keen-dashboards/dist/keen-dashboards.css') }}">
     <link rel="stylesheet" href="{{ url_for('.bower.static', filename='dcjs/dc.css') }}">
     <link rel="stylesheet" href="{{ url_for('.bower.static', filename='leaflet/dist/leaflet.css') }}">
+    <link rel="stylesheet" href="{{ url_for('.bower.static', filename='nvd3/build/nv.d3.css') }}">
     {{ css_resources|indent(4)|safe }}
 </head>
 <body class="application">
@@ -22,11 +23,8 @@
 
     <div class="row">
 
-      <div class="col-sm-6">
-        <div class="row">
-
           <!-- Time Chart -->
-          <div class="col-sm-12">
+          <div class="col-sm-6">
             <div class="chart-wrapper">
               <div class="chart-title">
                   <a href="https://www.highcharts.com/">HighCharts</a>
@@ -39,7 +37,7 @@
           <!-- Time Chart -->
 
           <!-- Time Chart -->
-          <div class="col-sm-12">
+          <div class="col-sm-6">
             <div class="chart-wrapper">
               <div class="chart-title">
                 <a href="http://bokeh.pydata.org/">Bokeh</a>
@@ -51,114 +49,23 @@
           </div>
           <!-- Time Chart -->
 
-{#          <!-- Brand -->#}
-{#          <div class="col-sm-6">#}
-{#            <div class="chart-wrapper">#}
-{#              <div class="chart-title">#}
-{#                Brand#}
-{#              </div>#}
-{#              <div class="chart-stage">#}
-{#                <div id="phone-brand-row-chart"></div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#          <!-- Brand -->#}
-{##}
-{##}
-{#          <div class="col-sm-6">#}
-{##}
-{#            <div class="row">#}
-{#            <!-- Gender -->#}
-{#            <div class="col-sm-12">#}
-{#              <div class="chart-wrapper">#}
-{#                <div class="chart-title">#}
-{#                  Gender#}
-{#                </div>#}
-{#                <div class="chart-stage">#}
-{#                  <div id="gender-row-chart"></div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            </div>#}
-{#            <!-- Gender -->#}
-{##}
-{#            <!-- Age Segment -->#}
-{#            <div class="row">#}
-{#            <div class="col-sm-12">#}
-{#              <div class="chart-wrapper">#}
-{#                <div class="chart-title">#}
-{#                  Age Segment#}
-{#                </div>#}
-{#                <div class="chart-stage">#}
-{#                  <div id="age-segment-row-chart"></div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#            <!-- Age Segment -->#}
-{#          </div>#}
-{#          </div>#}
-{##}
-{##}
-{#        </div>#}
-{#      </div>#}
-{##}
-{##}
-{#      <div class="col-sm-2">#}
-{#        <div class="row">#}
-{##}
-{#          <!-- Chinese Province -->#}
-{#          <div class="col-sm-12">#}
-{#            <div class="chart-wrapper">#}
-{#              <div class="chart-title">#}
-{#                Chinese Province#}
-{#              </div>#}
-{#              <div class="chart-stage">#}
-{#                <div id="location-row-chart"></div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#          <!-- Chinese Province -->#}
-{#        </div>#}
-{#      </div>#}
+    </div> <!--row-->
+    <div class="row">
 
+          <!-- Brand -->
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                  <a href="http://nvd3.org/">NVD3</a>
+              </div>
+              <div class="chart-stage">
+                <div id="nvd3-chart"><svg></svg></div>
+              </div>
+            </div>
+          </div>
+          <!-- Brand -->
 
-{##}
-{#      <div class="col-sm-4">#}
-{##}
-{#        <div class="row">#}
-{#          <!-- Map -->#}
-{#          <div class="col-sm-12">#}
-{#            <div class="chart-wrapper">#}
-{#              <div class="chart-title">#}
-{#                Map#}
-{#              </div>#}
-{#              <div class="chart-stage">#}
-{#                <div id="map" style="width: 400px; height: 380px"></div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#          <!-- Map -->#}
-{#        </div>#}
-{##}
-{#        <div class="row">#}
-{#          <!-- Number of events -->#}
-{#          <div class="col-sm-12">#}
-{#            <div class="chart-wrapper">#}
-{#              <div class="chart-title">#}
-{#                Number of Events#}
-{#              </div>#}
-{#              <div class="chart-stage">#}
-{#                <div id="number-records-nd"></div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
-{#          <!-- Number of events -->#}
-{#        </div>#}
-{##}
-{#      </div>#}
-
-    </div>
-
+    </div> <!--row-->
   </div>
 
   <hr>
@@ -172,6 +79,7 @@
     <script src="{{ url_for('.bower.static', filename='leaflet/dist/leaflet.js') }}"></script>
     <script src="{{ url_for('.bower.static', filename='keen-js/dist/keen.js') }}"></script>
     <script src="{{ url_for('.bower.static', filename='d3-queue/d3-queue.js') }}"></script>
+    <script src="{{ url_for('.bower.static', filename='nvd3/build/nv.d3.js') }}"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
     {{ js_resources|indent(4)|safe }}
@@ -201,27 +109,34 @@
                 chart: {type: 'bar', renderTo: 'high-charts'}
             });
 
-{#            debugger;#}
-        });
-{#            $.each(data, function(index, element) {#}
-{#                console.log(index + ": {" + element.category + ", " +#}
-{#                    element.amount + ", " + element.detail + "}"); }) });#}
+            var nvd3data = [{key: 'CategoryCounts', values: categoryCounts}];
 
-{#        new Highcharts.Chart(#}
-{#            {"series":[#}
-{#                {"data":[#}
-{#                    [1462838400000,2158372.6420299998],#}
-{#                    [1462752000000,1438419.8610100001],#}
-{#                    [1462665600000,667993.263726],#}
-{#                    [1462579200000,1825474.7086099999],#}
-{#                    [1462492800000,1908047.6404200001],#}
-{#                    [1304985600000,228989.8988]],#}
-{#                "name": "Value",#}
-{#                "yAxis": 0}#}
-{#                ],#}
-{#                "yAxis":[{}],#}
-{#                "chart": { "renderTo":" time-chart" },#}
-{#                "xAxis": {"type":"datetime","title":{"text":"Date"}},"legend":{"enabled":true}});#}
+            nv.addGraph(function() {
+                var chart = nv.models.discreteBarChart()
+                    .x(function(d) { return d.key })
+                    .y(function(d) { return d.value })
+                    // .margin({top: 30, right: 20, bottom: 50, left: 175})
+                    .duration(250)
+                    .showValues(true);
+                    // .tooltips(false)
+                    // .showControls(false);
+
+                chart.yAxis.tickFormat(d3.format(',.2f'));
+
+                debugger;
+
+                d3.select('#nvd3-chart svg')
+                    .datum(nvd3data)
+                    .call(chart);
+
+                nv.utils.windowResize(chart.update);
+
+                return chart;
+            });
+
+            // debugger;
+
+        });
     </script>
 
 
