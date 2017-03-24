@@ -23,7 +23,21 @@
 
     <div class="row">
 
-          <!-- Time Chart -->
+          <!-- SeaBorn -->
+          <div class="col-sm-6">
+            <div class="chart-wrapper">
+              <div class="chart-title">
+                  <a href="http://seaborn.pydata.org/">SeaBorn</a>
+              </div>
+              <div class="chart-stage">
+                  <img id="seaborn"><img src="./figures/seaborn.png" />
+              </div>
+            </div>
+          </div>
+
+          <!-- SeaBorn -->
+
+          <!-- HighCharts -->
           <div class="col-sm-6">
             <div class="chart-wrapper">
               <div class="chart-title">
@@ -34,9 +48,12 @@
               </div>
             </div>
           </div>
-          <!-- Time Chart -->
+          <!-- HighCharts -->
 
-          <!-- Time Chart -->
+      </div> <!--row-->
+      <div class="row">
+
+          <!-- Bokeh -->
           <div class="col-sm-6">
             <div class="chart-wrapper">
               <div class="chart-title">
@@ -47,12 +64,10 @@
               </div>
             </div>
           </div>
-          <!-- Time Chart -->
+          <!-- Bokeh -->
 
-    </div> <!--row-->
-    <div class="row">
 
-          <!-- Brand -->
+          <!-- NVD3 -->
           <div class="col-sm-6">
             <div class="chart-wrapper">
               <div class="chart-title">
@@ -63,7 +78,7 @@
               </div>
             </div>
           </div>
-          <!-- Brand -->
+          <!-- NVD3 -->
 
     </div> <!--row-->
   </div>
@@ -123,7 +138,7 @@
 
                 chart.yAxis.tickFormat(d3.format(',.2f'));
 
-                debugger;
+                // debugger;
 
                 d3.select('#nvd3-chart svg')
                     .datum(nvd3data)

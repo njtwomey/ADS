@@ -19,15 +19,19 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 # OR OTHER DEALINGS IN THE SOFTWARE.
 
-from flask import Flask
-from flask import render_template
+from flask import Flask, send_file, render_template
 from flask_bower import Bower
 import pandas as pd
-
+from StringIO import StringIO
+import seaborn as sns
+import base64
 from bokeh.embed import components
 from bokeh.resources import INLINE
 from bokeh.util.string import encode_utf8
 from bokeh.charts import Bar
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 
 
 app = Flask(__name__)
@@ -65,6 +69,25 @@ def index():
         css_resources=css_resources
     )
     return encode_utf8(html)
+
+
+@app.route('/figures/seaborn.png')
+def test():
+
+    img = StringIO()
+    sns.set_style("dark")
+
+    # fig, ax = plt.subplots(1, 1, figsize=(10, 10))
+    bar_plot = sns.barplot(y=sizes.index.values, x=sizes.values,
+                           palette="muted", order=sizes.index.values.tolist())
+    # plt.xticks(rotation=45)
+    fig = bar_plot.get_figure()
+    fig.tight_layout()
+
+    fig.savefig(img, format='png')
+    img.seek(0)
+
+    return send_file(img, mimetype='image/png')
 
 
 @app.route("/data")
